@@ -4,8 +4,6 @@ var title = document.getElementById("title");
 
 var artist = document.getElementById("artist");
 
-var lyrics = document.getElementById("lyrics");
-
 var songList = document.getElementById("songList");
 
 var playBtn = document.getElementById("playBtn");
@@ -40,32 +38,10 @@ function loadSong(index){
 
     audio.src = song.src;
 
-    renderLyrics(song.lyrics);
-
     updateSongList();
 
     showToast(song.title);
 }
-
-
-
-function renderLyrics(lines){
-
-    lyrics.innerHTML = "";
-
-    for(var i=0;i<lines.length;i++){
-
-        var div = document.createElement("div");
-
-        div.className = "line";
-
-        div.innerHTML = lines[i];
-
-        lyrics.appendChild(div);
-    }
-}
-
-
 
 function playPause(){
 
