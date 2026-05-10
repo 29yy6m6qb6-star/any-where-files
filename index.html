@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Lyrics Player</title>
+
+<style>
+body {
+  background: #121212;
+  color: white;
+  font-family: Arial;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.player {
+  width: 320px;
+  background: #181818;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.lyrics {
+  height: 150px;
+  overflow-y: auto;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.line {
+  opacity: 0.5;
+  padding: 3px 0;
+}
+
+.active {
+  color: #1db954;
+  opacity: 1;
+  font-size: 16px;
+}
+
+.song-item {
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 8px;
+  margin: 5px 0;
+  background: #222;
+  transition: 0.2s;
+}
+
+.song-item:hover {
+  background: #333;
+}
+
+.song-item.active {
+  background: #1db954;
+  color: black;
+}
+
+#toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #1db954;
+  color: black;
+  padding: 10px 15px;
+  border-radius: 8px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.3s;
+  font-size: 14px;
+}
+
+.container {
+  display: flex;
+  gap: 20px;
+}
+
+/* 右歌詞パネル */
+.lyrics-panel {
+  width: 300px;
+  background: #181818;
+  padding: 15px;
+  border-radius: 15px;
+}
+
+.lyrics {
+  height: 400px;
+  overflow-y: auto;
+  font-size: 14px;
+  white-space: pre-line;
+  color: #ccc;
+}
+
+#songList {
+  height: 325px;          /* 好きな高さに調整 */
+  overflow-y: auto;       /* スクロール有効 */
+  margin-top: 10px;
+}
+
+/* ダブルクリック感出す */
+.song-item {
+  user-select: none;
+}
+
+@font-face {
+  font-family: "Klee";
+  src: url("fonts/KleeOne.ttf") format("truetype");
+}
+
+body {
+  font-family: "Klee", sans-serif;
+}
+
+body {
+  font-weight: bold;
+}
+
+#playlistList {
+  max-height: 120px;
+  overflow-y: auto;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- 🎵 左：プレイヤー -->
+  <div class="player">
+    <div id="title"></div>
+    <div id="artist"></div>
+
+    <audio id="audio"></audio>
+
+    <div>
+      <button onclick="prev()">⏮</button>
+      <button id="playBtn" onclick="playPause()">▶️</button>
+      <button onclick="next()">⏭</button>
+      <button onclick="toggleShuffle()">🔀</button>
+      <button onclick="toggleRepeat()">🔁</button>
+    </div>
+<div id="playlistList"></div>
+    <div id="songList"></div>
+  </div>
+
+  <!-- 📜 右：歌詞 -->
+  <div class="lyrics-panel">
+    <h3>Lyrics</h3>
+    <div id="lyrics" class="lyrics"></div>
+  </div>
+
+</div>
+
+<div id="toast"></div>
+
+<script src="songs.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
